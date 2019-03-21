@@ -43,7 +43,7 @@ public class Cl {
                     
                 
                 }*/
-                String respu=prueba();
+                String respu=prueba(str);
                 System.out.println("que vemos: kkkk"+respu);
                 //Y capturar respuesta en un string
                 //El string es str
@@ -58,9 +58,9 @@ public class Cl {
     }
     
 
-    public static String prueba(){
+    public static String prueba(String comando){
     
-    ProcToString pts=new ProcToString("ipconfig");
+    ProcToString pts=new ProcToString(comando);
     String resultado="";
         try {
             int tr=(pts.runProcess());
