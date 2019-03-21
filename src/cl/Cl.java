@@ -11,35 +11,44 @@ package cl;
  */
 import java.net.*;
 import java.io.*;
+import java.util.concurrent.Executors;
 
 public class Cl {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         Socket s = new Socket("localhost", 4999);
         try {
             while (true) {
-                                PrintWriter pr = new PrintWriter(s.getOutputStream());
+                PrintWriter pr = new PrintWriter(s.getOutputStream());
                 BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-                
-                                //Parte server
+
+                //Parte server
                 InputStreamReader in = new InputStreamReader(s.getInputStream());
                 BufferedReader bf = new BufferedReader(in);
-                System.out.println("llegamossss... " );
+                //System.out.println("llegamossss.qqqqq.. ");
                 String str = bf.readLine();
-                System.out.println("Server dijo: " + str);
-                
+                //System.out.println("Server dijo: " + str);
+
                 //str sera la sentencia de control que se 
                 //mandara
-                
                 //Aqui se ejecutara el exce, comando cmd en java.
+                System.out.println("que es str : "+str);
+                /**
+                if(str.equals("directorio")){
+                    System.out.println("entramos?");
+                    gethome();
+                    
+                
+                }*/
+                String respu=prueba();
+                System.out.println("que vemos: kkkk"+respu);
                 //Y capturar respuesta en un string
                 //El string es str
-                
                 //String linea = stdIn.readLine();
-                pr.println("Esto funciona" + str);
+                pr.println("El cliente nos regresa :" + respu);
                 pr.flush();
 
             }
@@ -47,4 +56,26 @@ public class Cl {
             System.out.println("IOException: " + e.getMessage());
         }
     }
+    
+
+    public static String prueba(){
+    
+    ProcToString pts=new ProcToString("ipconfig");
+    String resultado="";
+        try {
+            int tr=(pts.runProcess());
+            if (pts.hasResult()){
+                // aquí viene tu resultado
+                String resultado1 = pts.getResult();
+                resultado= resultado1.replaceAll("(\\n|\\r)", "?");
+                //System.out.println("esto resulto putos"+resultado);
+            }
+        } catch (IOException | InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    
+        return resultado;
+    }
+    
 }
