@@ -35,7 +35,7 @@ public class Cl {
                 //str sera la sentencia de control que se 
                 //mandara
                 //Aqui se ejecutara el exce, comando cmd en java.
-                System.out.println("que es str : "+str);
+                //System.out.println("Que dice el Server: "+str);
                 /**
                 if(str.equals("directorio")){
                     System.out.println("entramos?");
@@ -44,11 +44,11 @@ public class Cl {
                 
                 }*/
                 String respu=prueba(str);
-                System.out.println("que vemos: kkkk"+respu);
+                //System.out.println("que vemos: kkkk"+respu);
                 //Y capturar respuesta en un string
                 //El string es str
                 //String linea = stdIn.readLine();
-                pr.println("El cliente nos regresa :" + respu);
+                pr.println("El cliente dice :" + respu);
                 pr.flush();
 
             }
