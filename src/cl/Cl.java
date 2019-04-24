@@ -36,13 +36,6 @@ public class Cl {
                 //mandara
                 //Aqui se ejecutara el exce, comando cmd en java.
                 //System.out.println("Que dice el Server: "+str);
-                /**
-                if(str.equals("directorio")){
-                    System.out.println("entramos?");
-                    gethome();
-                    
-                
-                }*/
                 String respu=prueba(str);
                 //System.out.println("que vemos: kkkk"+respu);
                 //Y capturar respuesta en un string
@@ -67,14 +60,12 @@ public class Cl {
             if (pts.hasResult()){
                 // aquí viene tu resultado
                 String resultado1 = pts.getResult();
-                resultado= resultado1.replaceAll("(\\n|\\r)", "?");
-                //System.out.println("esto resulto putos"+resultado);
+                resultado= resultado1.replaceAll("(\\n|\\r)", "?");;
             }
         } catch (IOException | InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    
         return resultado;
     }
     

@@ -8,6 +8,8 @@ package cl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,10 +21,9 @@ public class ProcToString {
     private String out=null;
     private Process proc=null;
 
-    public ProcToString(String... cmd){
-        //System.out.println("esto pasa : ñññ"+cmd);
-        pb = new ProcessBuilder(cmd);
-        // redirigir stdErr>stdOut
+    public ProcToString(String cmd){     
+        String tem=cmd;
+        pb = new ProcessBuilder("cmd.exe", "/C", cmd);
         pb.redirectErrorStream(true);
     }
 
