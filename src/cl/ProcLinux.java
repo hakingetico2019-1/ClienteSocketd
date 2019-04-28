@@ -31,11 +31,8 @@ public class ProcLinux extends Thread {
         if (isWindows) {
             pb = new ProcessBuilder("cmd.exe", "/C", cmd);
         } else {
-
-            //processBuilder.command("bash", "-c", "ls /home/mkyong/");
             pb = new ProcessBuilder();
             pb.command("bash", "-c", cmd);
-            //pb = new ProcessBuilder("sh", "-C", cmd);
         }
 
         //pb = new ProcessBuilder("cmd.exe", "/C", cmd);

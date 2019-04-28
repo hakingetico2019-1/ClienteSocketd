@@ -21,7 +21,7 @@ public class Cl {
     private static String ref = "";
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        Socket s = new Socket("192.168.1.9", 4999);
+        Socket s = new Socket("localhost", 4999);
         try {
             while (true) {
                 PrintWriter pr = new PrintWriter(s.getOutputStream());
@@ -40,26 +40,28 @@ public class Cl {
                 //System.out.println("Que dice el Server: "+str);
                 boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
                 String respu;
-                if (isWindows) {
+                //if (!str.equals("1")) {
+                    if (isWindows) {
 
-                    respu = prueba(str);
-                } else {
-                    respu = pruebaLinux(str);
-                    //respu = pruebaLinux(str);
-                    //System.out.println("  que es respu antes de salir :" + respu);
-                    //System.out.println("que es ref antes de : "+ref);
-                    //pruebfina(str);
-                    //System.out.println("que es ref despues de : "+ref);
-                    //respu="lindo dia";
-                }
+                        respu = prueba(str);
+                    } else {
+                        respu = pruebaLinux(str);
+                        //respu = pruebaLinux(str);
+                        //System.out.println("  que es respu antes de salir :" + respu);
+                        //System.out.println("que es ref antes de : "+ref);
+                        //pruebfina(str);
+                        //System.out.println("que es ref despues de : "+ref);
+                        //respu="lindo dia";
+                    }
 
+                    pr.println("El cliente dice :" + respu);
+                    pr.flush();
+                //}
+                System.out.println("ahora espere.");
                 //System.out.println("que vemos: kkkk"+respu);
                 //Y capturar respuesta en un string
                 //El string es str
                 //String linea = stdIn.readLine();
-                pr.println("El cliente dice :" + respu);
-                pr.flush();
-
             }
         } catch (IOException e) {
             System.out.println("IOException: " + e.getMessage());
