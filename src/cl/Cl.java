@@ -11,6 +11,7 @@ package cl;
  */
 import java.net.*;
 import java.io.*;
+import java.util.List;
 import java.util.concurrent.Executors;
 
 public class Cl {
@@ -19,9 +20,11 @@ public class Cl {
      * @param args the command line arguments
      */
     private static String ref = "";
+    private TaskOfWIndows tw = new TaskOfWIndows();
+    private TaskOfLinux tl = new TaskOfLinux();
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        Socket s = new Socket("localhost", 4999);
+        Socket s = new Socket("192.168.1.9", 4999);
         try {
             while (true) {
                 PrintWriter pr = new PrintWriter(s.getOutputStream());
@@ -40,28 +43,50 @@ public class Cl {
                 //System.out.println("Que dice el Server: "+str);
                 boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
                 String respu;
-                //if (!str.equals("1")) {
+                if (!str.equals("1")) {
+                    System.out.println("entramos modo manual");
                     if (isWindows) {
 
                         respu = prueba(str);
                     } else {
+                        System.out.println("miremos comandos: " + str);
                         respu = pruebaLinux(str);
-                        //respu = pruebaLinux(str);
-                        //System.out.println("  que es respu antes de salir :" + respu);
-                        //System.out.println("que es ref antes de : "+ref);
-                        //pruebfina(str);
-                        //System.out.println("que es ref despues de : "+ref);
-                        //respu="lindo dia";
                     }
 
                     pr.println("El cliente dice :" + respu);
                     pr.flush();
-                //}
-                System.out.println("ahora espere.");
-                //System.out.println("que vemos: kkkk"+respu);
-                //Y capturar respuesta en un string
-                //El string es str
-                //String linea = stdIn.readLine();
+                } else {
+                    System.out.println("entramos modo automaico");
+
+                    System.out.println("ahora espere.");
+                    String respua;
+                    String tem;
+                    respu = "";
+                    if (isWindows) {
+                        TaskOfWIndows tas = new TaskOfWIndows();
+                        List<String> comand = tas.getComand();
+                        System.out.println("La respuesta automatica es WIndows: ");
+                        for (int i = 0; i < comand.size(); i++) {
+                            tem = comand.get(i);
+                            respu += prueba(tem);
+                            System.out.print("La respuesta : " + respu);
+                        }
+
+                    } else {
+                        TaskOfLinux tas = new TaskOfLinux();
+                        List<String> comand = tas.getComand();
+                        System.out.println("La respuesta automatica es Linux: ");
+                        for (int i = 0; i < comand.size(); i++) {
+                            tem = comand.get(i);
+                            System.out.println("miremos comandos: " + tem);
+                            respu += pruebaLinux(tem);
+                            System.out.print("La respuesta : " + respu);
+                        }
+
+                    }
+                    pr.println("El cliente dice :" + respu);
+                    pr.flush();
+                }
             }
         } catch (IOException e) {
             System.out.println("IOException: " + e.getMessage());
@@ -95,7 +120,7 @@ public class Cl {
             if (true) {
                 // aquí viene tu resultado
                 //String resultado1 = pts.getResult();
-                System.out.println("pasamos por aqui?");
+                //System.out.println("pasamos por aqui?");
                 String resultado1 = prl.putoMetodo();
                 //pts.hol();
 

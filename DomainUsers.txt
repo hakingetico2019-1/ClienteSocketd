@@ -1,0 +1,4 @@
+Usage:
+net rap user add             Add specified user
+net rap user info            List domain groups of specified user
+net rap user delete          Remove specified user
